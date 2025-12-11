@@ -1,0 +1,22 @@
+{
+  "name": "pg-cdc-online-course",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "plugin.name": "pgoutput",
+
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "debezium",
+    "database.password": "dbz",
+    "database.dbname": "online_course",
+
+    "topic.prefix": "online_course",  
+
+    "slot.name": "online_slot",
+    "publication.name": "online_pub",
+
+    "table.include.list": "public.students,public.instructors,public.courses,public.lessons,public.enrollments,public.payments,public.reviews,public.quizzes,public.certificates,public.logs",
+    "time.precision.mode": "connect",
+    "tombstones.on.delete": "false"
+  }
+}

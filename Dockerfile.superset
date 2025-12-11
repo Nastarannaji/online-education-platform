@@ -1,0 +1,18 @@
+FROM apache/superset:3.0.1
+
+# سوئیچ به root برای نصب پکیج
+USER root
+
+# فقط این یکی کافیه — بقیه‌شون اضافین و ممکنه conflict ایجاد کنن
+RUN pip install --no-cache-dir clickhouse-connect>=0.7.7
+
+RUN pip install --no-cache-dir bleach==5.0.1
+
+# اگر حتماً می‌خوای قدیمی‌تر هم ساپورت کنی (برای URI های clickhouse+http یا native) اینا رو هم اضافه کن:
+#RUN pip install --no-cache-dir \
+  #clickhouse-connect>=0.7.15 \
+ #clickhouse-sqlalchemy>=0.2.0
+  # clickhouse-driver
+
+# برگرد به یوزر معمولی superset
+USER superset
